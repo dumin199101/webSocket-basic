@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webSocket示例A-接受服务器端发送端数据</title>
+</head>
+<body>
+<script>
+    // 实例化，浏览器端WebSocket
+    // 并使用ws协议连接位于：127.0.0.1:2346端口的webSocket服务器。
+    ws = new WebSocket("ws://127.0.0.1:2346");
+
+
+    // 当服务器端向浏览器发送消息时，执行的回调函数
+    ws.onmessage = function(e) {
+        console.log("Message from server: " + e.data);
+    };
+
+    // 8s后，向服务器发送一个字符串，
+    setInterval(function() {
+        ws.send('Hello Server! Now is ' + (new Date()).toTimeString());
+    }, 3000);
+</script>
+</body>
+</html>
